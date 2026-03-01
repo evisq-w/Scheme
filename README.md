@@ -1,7 +1,5 @@
 # scheme-basic
 
-Это третья часть [scheme](../../scheme). Её нужно делать после [scheme-parser](../parser).
-
 - [scheme-basic](#scheme-basic)
   - [Что нужно сделать?](#что-нужно-сделать)
     - [1. Особая форма quote](#1-особая-форма-quote)
