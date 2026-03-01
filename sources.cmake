@@ -1,7 +1,9 @@
 add_library(scheme_basic
-    tokenizer.cpp
-    parser.cpp
-    scheme.cpp
-    
-    # maybe more .cpp files here
+    src/parser.cpp
+    src/boolean.cpp
+    src/printer.cpp
+    src/scheme.cpp
+    src/tokenizer.cpp
+    src/builtins    
+    include/    
 )
