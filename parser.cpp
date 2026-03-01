@@ -2,8 +2,8 @@
 #include <memory>
 #include <stdexcept>
 #include "error.h"
-#include "object.h"
-#include "tokenizer.h"
+#include <object.h>
+#include <tokenizer.h>
 
 std::shared_ptr<Symbol> MakeS(std::string input) {
     return std::make_shared<Symbol>(input);
