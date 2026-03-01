@@ -2,9 +2,6 @@
 #include "object.h"
 
 bool IsTrue(ObjPtr val) {
-    if (Is<Number>(val)) {
-        return (As<Number>(val)->GetValue() != 0);
-    }
     if (Is<Symbol>(val)) {
         return (As<Symbol>(val)->GetName() != "#f");
     }

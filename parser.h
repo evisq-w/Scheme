@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "object.h"
-#include <tokenizer.h>
+#include "tokenizer.h"
 
 std::shared_ptr<Symbol> MakeS(std::string input);
 std::shared_ptr<Number> MakeN(int32_t input);

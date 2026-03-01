@@ -126,7 +126,7 @@ ObjPtr BuiltinSub(const CellPtr& cell) {
         throw RuntimeError("Error: Expected number");
     }
     if (!Is<Cell>(cell->GetSecond())) {
-        throw SyntaxError("Error: ???");
+        throw SyntaxError("Error: Unexpected args");
     }
     auto first_elem = As<Cell>(cell->GetSecond())->GetFirst();
     if (!Is<Number>(first_elem)) {
@@ -171,7 +171,7 @@ ObjPtr BuiltinDivide(const CellPtr& cell) {
         throw RuntimeError("Error: Expected number");
     }
     if (!Is<Cell>(cell->GetSecond())) {
-        throw SyntaxError("Error: ???");
+        throw SyntaxError("Error: Unexpected args");
     }
     auto first_elem = As<Cell>(cell->GetSecond())->GetFirst();
     if (!Is<Number>(first_elem)) {
