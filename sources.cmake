@@ -1,9 +1,0 @@
-add_library(scheme_basic
-    src/parser.cpp
-    src/boolean.cpp
-    src/printer.cpp
-    src/scheme.cpp
-    src/tokenizer.cpp
-    src/builtins    
-    include/    
-)
