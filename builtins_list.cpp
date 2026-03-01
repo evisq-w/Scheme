@@ -123,7 +123,7 @@ ObjPtr BuiltinListRef(const CellPtr& cell) {
         !Is<Number>(As<Cell>(nextlist->GetSecond())->GetFirst())) {
         throw RuntimeError("Expected number as second arg");
     }
-    int cnt = As<Number>(As<Cell>(nextlist->GetSecond())->GetFirst())->GetValue();
+    int64_t cnt = As<Number>(As<Cell>(nextlist->GetSecond())->GetFirst())->GetValue();
     auto itog = FuncCell(As<Cell>(nextlist->GetFirst()));
     while (cnt--) {
         if (!Is<Cell>(itog)) {
@@ -152,7 +152,7 @@ ObjPtr BuiltinListTail(const CellPtr& cell) {
         !Is<Number>(As<Cell>(nextlist->GetSecond())->GetFirst())) {
         throw RuntimeError("Expected number as second arg");
     }
-    int cnt = As<Number>(As<Cell>(nextlist->GetSecond())->GetFirst())->GetValue();
+    int64_t cnt = As<Number>(As<Cell>(nextlist->GetSecond())->GetFirst())->GetValue();
     auto itog = FuncCell(As<Cell>(nextlist->GetFirst()));
     while (cnt--) {
         if (!Is<Cell>(itog)) {

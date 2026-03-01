@@ -26,7 +26,7 @@ bool Tokenizer::IsEnd() {
     return end_;
 }
 
-int GetDigit(std::istream* in) {
+int64_t GetDigit(std::istream* in) {
     int32_t res = 0;
     auto symb = in->peek();
     while (isdigit(symb)) {

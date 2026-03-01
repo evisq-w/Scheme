@@ -10,15 +10,15 @@ public:
 
 class Number : public Object {
 public:
-    Number(int value) : value_(value) {
+    Number(int64_t value) : value_(value) {
     }
 
-    int GetValue() const {
+    int64_t GetValue() const {
         return value_;
     }
 
 private:
-    int value_;
+    int64_t value_;
 };
 
 class Symbol : public Object {

@@ -177,7 +177,7 @@ ObjPtr BuiltinDivide(const CellPtr& cell) {
     if (!Is<Number>(first_elem)) {
         throw SyntaxError("Error: Expected number");
     }
-    int num = (As<Number>(first_elem)->GetValue());
+    int64_t num = (As<Number>(first_elem)->GetValue());
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
@@ -205,7 +205,7 @@ ObjPtr BuiltinMax(const CellPtr& cell) {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
-                    return {MakeN(std::max<int>(a->GetValue(), As<Number>(b)->GetValue())),
+                    return {MakeN(std::max<int64_t>(a->GetValue(), As<Number>(b)->GetValue())),
                             true};
                 },
                 [](bool a, bool b) -> bool { return a & b; }, MakeN(INT_MIN), true)
@@ -223,7 +223,7 @@ ObjPtr BuiltinMin(const CellPtr& cell) {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
-                    return {MakeN(std::min<int>(a->GetValue(), As<Number>(b)->GetValue())),
+                    return {MakeN(std::min<int64_t>(a->GetValue(), As<Number>(b)->GetValue())),
                             true};
                 },
                 [](bool a, bool b) -> bool { return a & b; }, MakeN(INT_MAX), true)

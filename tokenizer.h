@@ -3,7 +3,7 @@
 #include <variant>
 #include <istream>
 
-int GetDigit(std::istream* in);
+int64_t GetDigit(std::istream* in);
 
 std::string GetString(std::istream* in);
 
@@ -29,7 +29,7 @@ struct BooleanToken {
 enum class BracketToken { OPEN, CLOSE };
 
 struct ConstantToken {
-    int value;
+    int64_t value;
 
     bool operator==(const ConstantToken& other) const;
 };
