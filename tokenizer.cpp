@@ -1,7 +1,6 @@
 #include "tokenizer.h"
 #include <cctype>
 #include <istream>
-#include "error.h"
 
 bool SymbolToken::operator==(const SymbolToken& other) const {
     return (name == other.name);

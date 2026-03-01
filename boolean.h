@@ -1,4 +1,6 @@
+#pragma once
+
 #include "builtins.h"
 
-bool IsTrue(Obj val);
-bool IsBool(Obj val);
+bool IsTrue(ObjPtr val);
+bool IsBool(ObjPtr val);

@@ -1,7 +1,7 @@
 #include "boolean.h"
 #include "object.h"
 
-bool IsTrue(Obj val) {
+bool IsTrue(ObjPtr val) {
     if (Is<Number>(val)) {
         return (As<Number>(val)->GetValue() != 0);
     }
@@ -11,7 +11,7 @@ bool IsTrue(Obj val) {
     return true;
 }
 
-bool IsBool(Obj val) {
+bool IsBool(ObjPtr val) {
     if (Is<Symbol>(val)) {
         std::string value = As<Symbol>(val)->GetName();
         return (value == "#f" || value == "#t");

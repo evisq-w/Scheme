@@ -1,27 +1,29 @@
+#pragma once
+
 #include "builtins.h"
 
-Obj BuiltinIsNumber(const CellPtr& cell);
+ObjPtr BuiltinIsNumber(const CellPtr& cell);
 
-Obj BuiltinLess(const CellPtr& cell);
+ObjPtr BuiltinLess(const CellPtr& cell);
 
-Obj BuiltinLessEq(const CellPtr& cell);
+ObjPtr BuiltinLessEq(const CellPtr& cell);
 
-Obj BuiltinGreater(const CellPtr& cell);
+ObjPtr BuiltinGreater(const CellPtr& cell);
 
-Obj BuiltinGreaterEq(const CellPtr& cell);
+ObjPtr BuiltinGreaterEq(const CellPtr& cell);
 
-Obj BuiltinEq(const CellPtr& cell);
+ObjPtr BuiltinEq(const CellPtr& cell);
 
-Obj BuiltinAdd(const CellPtr& cell);
+ObjPtr BuiltinAdd(const CellPtr& cell);
 
-Obj BuiltinSub(const CellPtr& cell);
+ObjPtr BuiltinSub(const CellPtr& cell);
 
-Obj BuiltinMultiply(const CellPtr& cell);
+ObjPtr BuiltinMultiply(const CellPtr& cell);
 
-Obj BuiltinDivide(const CellPtr& cell);
+ObjPtr BuiltinDivide(const CellPtr& cell);
 
-Obj BuiltinMax(const CellPtr& cell);
+ObjPtr BuiltinMax(const CellPtr& cell);
 
-Obj BuiltinMin(const CellPtr& cell);
+ObjPtr BuiltinMin(const CellPtr& cell);
 
-Obj BuiltinAbs(const CellPtr& cell);
+ObjPtr BuiltinAbs(const CellPtr& cell);

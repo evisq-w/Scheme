@@ -1,13 +1,11 @@
 #pragma once
 
 #include "builtins.h"
-#include <stdexcept>
 #include <string>
-#include <variant>
 
 template <typename T, typename F>
-std::pair<T, F> Result(Obj cell,
-                       std::function<std::pair<T, F>(T, Obj)> func,
+std::pair<T, F> Result(ObjPtr cell,
+                       std::function<std::pair<T, F>(T, ObjPtr)> func,
                        std::function<F(F, F)> merge, T past, F res) {
     if (!cell) {
         return {past, res};
@@ -22,7 +20,7 @@ std::pair<T, F> Result(Obj cell,
     }
 }
 
-Obj FuncCell(const CellPtr& call);
+ObjPtr FuncCell(const CellPtr& call);
 
 class Interpreter {
 public:

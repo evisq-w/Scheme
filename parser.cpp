@@ -1,6 +1,5 @@
 #include <parser.h>
 #include <memory>
-#include <stdexcept>
 #include "error.h"
 #include <object.h>
 #include <tokenizer.h>

@@ -1,17 +1,13 @@
-#include "boolean.h"
 #include "error.h"
 #include "object.h"
 #include "parser.h"
 #include "printer.h"
 #include "scheme.h"
 #include <tokenizer.h>
-#include <algorithm>
 #include <functional>
-#include <iostream>
-#include <memory>
 #include <sstream>
 
-Obj FuncCall(const CellPtr& call) {
+ObjPtr FuncCell(const CellPtr& call) {
     if (!call || !Is<Symbol>(call->GetFirst())) {
         throw RuntimeError("Expected function name");
     }
@@ -28,7 +24,7 @@ Obj FuncCall(const CellPtr& call) {
 std::string Interpreter::Run(const std::string &input) {
     std::stringstream sstr{input};
     Tokenizer tokenizer(&sstr);
-    Obj res = Read(&tokenizer);
+    ObjPtr res = Read(&tokenizer);
     if (Is<Number>(res)) {
         return Itos(As<Number>(res)->GetValue());
     }
@@ -36,7 +32,7 @@ std::string Interpreter::Run(const std::string &input) {
         return As<Symbol>(res)->GetName();
     }
     if (Is<Cell>(res)) {
-        auto obj = FuncCall(As<Cell>(res));
+        auto obj = FuncCell(As<Cell>(res));
         if (Is<Symbol>(obj)) {
             return As<Symbol>(obj)->GetName();
         } else if (Is<Number>(obj)) {

@@ -3,11 +3,11 @@
 #include "parser.h"
 #include "scheme.h"
 
-Obj BuiltinQuote(const CellPtr& cell) {
+ObjPtr BuiltinQuote(const CellPtr& cell) {
     return cell->GetSecond();
 }
 
-Obj BuiltinIsPair(const CellPtr& cell) {
+ObjPtr BuiltinIsPair(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist || nextlist->GetSecond()) {
         throw RuntimeError("Error: Expected 1 argument");
@@ -26,7 +26,7 @@ Obj BuiltinIsPair(const CellPtr& cell) {
     return MakeS("#f");
 }
 
-Obj BuiltinIsNull(const CellPtr& cell) {
+ObjPtr BuiltinIsNull(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist || nextlist->GetSecond()) {
         throw RuntimeError("Error: Expected 1 argument");
@@ -38,7 +38,7 @@ Obj BuiltinIsNull(const CellPtr& cell) {
     return (itog == nullptr ? MakeS("#t") : MakeS("#f"));   
 }
 
-Obj BuiltinIsList(const CellPtr& cell) {
+ObjPtr BuiltinIsList(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist || nextlist->GetSecond()) {
         throw RuntimeError("Error: Expected 1 argument");
@@ -53,7 +53,7 @@ Obj BuiltinIsList(const CellPtr& cell) {
     return (itog == nullptr ? MakeS("#t") : MakeS("#f"));
 }
 
-Obj BuiltinCons(const CellPtr& cell) {
+ObjPtr BuiltinCons(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist || !nextlist->GetSecond()) {
         throw RuntimeError("Error: Expected 2 argument");
@@ -65,7 +65,7 @@ Obj BuiltinCons(const CellPtr& cell) {
     }
 }
 
-Obj BuiltinCar(const CellPtr& cell) {
+ObjPtr BuiltinCar(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist) {
         throw RuntimeError("Error: Expected at least 1 argument");
@@ -86,7 +86,7 @@ Obj BuiltinCar(const CellPtr& cell) {
     return itog;
 }
 
-Obj BuiltinCdr(const CellPtr& cell) {
+ObjPtr BuiltinCdr(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist) {
         throw RuntimeError("Error: Expected at least 1 argument");
@@ -107,11 +107,11 @@ Obj BuiltinCdr(const CellPtr& cell) {
     return nullptr;
 }
 
-Obj BuiltinList(const CellPtr& cell) {
+ObjPtr BuiltinList(const CellPtr& cell) {
     return As<Cell>(cell->GetSecond());
 }
 
-Obj BuiltinListRef(const CellPtr& cell) {
+ObjPtr BuiltinListRef(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist) {
         throw RuntimeError("Error: Expected at least 2 argument");
@@ -140,7 +140,7 @@ Obj BuiltinListRef(const CellPtr& cell) {
     return As<Cell>(itog)->GetFirst();
 }
 
-Obj BuiltinListTail(const CellPtr& cell) {
+ObjPtr BuiltinListTail(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist) {
         throw RuntimeError("Error: Expected at least 2 argument");

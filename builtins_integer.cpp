@@ -3,7 +3,7 @@
 #include "parser.h"
 #include "scheme.h"
 
-Obj BuiltinIsNumber(const CellPtr& cell) {
+ObjPtr BuiltinIsNumber(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist) {
         throw RuntimeError("Error: Expected at least 1 argument");
@@ -11,11 +11,11 @@ Obj BuiltinIsNumber(const CellPtr& cell) {
     return (Is<Number>(nextlist->GetFirst()) ? MakeS("#t") : MakeS("#f"));
 }
 
-Obj BuiltinLess(const CellPtr& cell) {
+ObjPtr BuiltinLess(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
@@ -29,11 +29,11 @@ Obj BuiltinLess(const CellPtr& cell) {
 
 }
 
-Obj BuiltinLessEq(const CellPtr& cell) {
+ObjPtr BuiltinLessEq(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
@@ -46,11 +46,11 @@ Obj BuiltinLessEq(const CellPtr& cell) {
                 : MakeS("#f");
 }
 
-Obj BuiltinGreater(const CellPtr& cell) {
+ObjPtr BuiltinGreater(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
@@ -63,11 +63,11 @@ Obj BuiltinGreater(const CellPtr& cell) {
                 : MakeS("#f");
 }
 
-Obj BuiltinGreaterEq(const CellPtr& cell) {
+ObjPtr BuiltinGreaterEq(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
@@ -80,7 +80,7 @@ Obj BuiltinGreaterEq(const CellPtr& cell) {
                 : MakeS("#f");
 }
 
-Obj BuiltinEq(const CellPtr& cell) {
+ObjPtr BuiltinEq(const CellPtr& cell) {
     if (!cell->GetSecond()) {
         return MakeS("#t");
     }
@@ -91,7 +91,7 @@ Obj BuiltinEq(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
@@ -104,11 +104,11 @@ Obj BuiltinEq(const CellPtr& cell) {
                 : MakeS("#f");
 }
 
-Obj BuiltinAdd(const CellPtr& cell) {
+ObjPtr BuiltinAdd(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (Is<Cell>(b)) {
                         b = FuncCell(As<Cell>(b));
                     }
@@ -121,7 +121,7 @@ Obj BuiltinAdd(const CellPtr& cell) {
         .first;
 }
 
-Obj BuiltinSub(const CellPtr& cell) {
+ObjPtr BuiltinSub(const CellPtr& cell) {
     if (!cell->GetSecond()) {
         throw RuntimeError("Error: Expected number");
     }
@@ -135,7 +135,7 @@ Obj BuiltinSub(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (Is<Cell>(b)) {
                         b = FuncCell(As<Cell>(b));
                     }
@@ -149,11 +149,11 @@ Obj BuiltinSub(const CellPtr& cell) {
         .first;
 }
 
-Obj BuiltinMultiply(const CellPtr& cell) {
+ObjPtr BuiltinMultiply(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (Is<Cell>(b)) {
                         b = FuncCell(As<Cell>(b));
                     }
@@ -166,7 +166,7 @@ Obj BuiltinMultiply(const CellPtr& cell) {
         .first;
 }
 
-Obj BuiltinDivide(const CellPtr& cell) {
+ObjPtr BuiltinDivide(const CellPtr& cell) {
     if (!cell->GetSecond()) {
         throw RuntimeError("Error: Expected number");
     }
@@ -181,7 +181,7 @@ Obj BuiltinDivide(const CellPtr& cell) {
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (Is<Cell>(b)) {
                         b = FuncCell(As<Cell>(b));
                     }
@@ -194,14 +194,14 @@ Obj BuiltinDivide(const CellPtr& cell) {
         .first;
 }
 
-Obj BuiltinMax(const CellPtr& cell) {
+ObjPtr BuiltinMax(const CellPtr& cell) {
     if (!cell->GetSecond()) {
         throw RuntimeError("Error: Expected number");
     }
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
@@ -212,14 +212,14 @@ Obj BuiltinMax(const CellPtr& cell) {
         .first;
 }
 
-Obj BuiltinMin(const CellPtr& cell) {
+ObjPtr BuiltinMin(const CellPtr& cell) {
     if (!cell->GetSecond()) {
         throw RuntimeError("Error: Expected number");
     }
     return Result<std::shared_ptr<Number>, bool>(
                 As<Cell>(cell->GetSecond()),
                 [](std::shared_ptr<Number> a,
-                    Obj b) -> std::pair<std::shared_ptr<Number>, bool> {
+                    ObjPtr b) -> std::pair<std::shared_ptr<Number>, bool> {
                     if (!Is<Number>(b)) {
                         throw RuntimeError("Error: Expected number");
                     }
@@ -231,7 +231,7 @@ Obj BuiltinMin(const CellPtr& cell) {
 
 }
 
-Obj BuiltinAbs(const CellPtr& cell) {
+ObjPtr BuiltinAbs(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist || nextlist->GetSecond()) {
         throw RuntimeError("Error: Expected 1 argument");

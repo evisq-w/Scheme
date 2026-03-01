@@ -22,7 +22,7 @@ std::string Itos(int32_t var) {
 }
 
 
-std::string PrintObj(Obj res) {
+std::string PrintObj(ObjPtr res) {
     if (!res) {
         return "()";
     }

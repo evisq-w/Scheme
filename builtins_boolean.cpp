@@ -4,7 +4,7 @@
 #include "parser.h"
 #include "scheme.h"
 
-Obj BuiltinIsBoolean(const CellPtr& cell) {
+ObjPtr BuiltinIsBoolean(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist) {
         throw RuntimeError("Error: Expected at least 1 argument");
@@ -19,7 +19,7 @@ Obj BuiltinIsBoolean(const CellPtr& cell) {
     return MakeS("#f");
 }
 
-Obj BuiltinNotBool(const CellPtr& cell) {
+ObjPtr BuiltinNotBool(const CellPtr& cell) {
     auto nextlist = As<Cell>(cell->GetSecond());
     if (!nextlist) {
         throw RuntimeError("Error: Expected at least 1 argument");
@@ -37,11 +37,11 @@ Obj BuiltinNotBool(const CellPtr& cell) {
     return MakeS("#f");
 }
 
-Obj BuiltinAndBool(const CellPtr& cell) {
-    return Result<Obj, bool>(
+ObjPtr BuiltinAndBool(const CellPtr& cell) {
+    return Result<ObjPtr, bool>(
                 As<Cell>(cell->GetSecond()),
-                [](Obj a,
-                    Obj b) -> std::pair<Obj, bool> {
+                [](ObjPtr a,
+                    ObjPtr b) -> std::pair<ObjPtr, bool> {
                     if (!IsTrue(a)) {
                         return {a, false};
                     }
@@ -55,11 +55,11 @@ Obj BuiltinAndBool(const CellPtr& cell) {
 }
 
 
-Obj BuiltinOrBool(const CellPtr& cell) {
-    return Result<Obj, bool>(
+ObjPtr BuiltinOrBool(const CellPtr& cell) {
+    return Result<ObjPtr, bool>(
                 As<Cell>(cell->GetSecond()),
-                [](Obj a,
-                    Obj b) -> std::pair<Obj, bool> {
+                [](ObjPtr a,
+                    ObjPtr b) -> std::pair<ObjPtr, bool> {
                     if (IsTrue(a)) {
                         return {a, true};
                     }

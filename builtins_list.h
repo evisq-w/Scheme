@@ -1,21 +1,23 @@
+#pragma once
+
 #include "builtins.h"
 
-Obj BuiltinQuote(const CellPtr& cell);
+ObjPtr BuiltinQuote(const CellPtr& cell);
 
-Obj BuiltinIsPair(const CellPtr& cell);
+ObjPtr BuiltinIsPair(const CellPtr& cell);
 
-Obj BuiltinIsNull(const CellPtr& cell);
+ObjPtr BuiltinIsNull(const CellPtr& cell);
 
-Obj BuiltinIsList(const CellPtr& cell);
+ObjPtr BuiltinIsList(const CellPtr& cell);
 
-Obj BuiltinCons(const CellPtr& cell);
+ObjPtr BuiltinCons(const CellPtr& cell);
 
-Obj BuiltinCar(const CellPtr& cell);
+ObjPtr BuiltinCar(const CellPtr& cell);
 
-Obj BuiltinCdr(const CellPtr& cell);
+ObjPtr BuiltinCdr(const CellPtr& cell);
 
-Obj BuiltinList(const CellPtr& cell);
+ObjPtr BuiltinList(const CellPtr& cell);
 
-Obj BuiltinListRef(const CellPtr& cell);
+ObjPtr BuiltinListRef(const CellPtr& cell);
 
-Obj BuiltinListTail(const CellPtr& cell);
+ObjPtr BuiltinListTail(const CellPtr& cell);

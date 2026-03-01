@@ -1,7 +1,6 @@
 #pragma once
 
 #include <variant>
-#include <optional>
 #include <istream>
 
 int GetDigit(std::istream* in);
